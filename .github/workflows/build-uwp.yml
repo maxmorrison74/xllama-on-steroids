@@ -1,96 +1,70 @@
-name: build-uwp
+name: Build UWP (Windows)
 
 on:
   push:
-    branches: [main]
-  pull_request:
-  # Store SKU is opt-in: avoids +~13 min on every PR. From Linux (no Windows VM):
-  #   gh workflow run build-uwp.yml -f store_sku=true --ref <branch>
-  # Artifact: xllama-on-steroids-appx-store. SSOT: docs/store-readiness.md
+    branches: [ feat/moe-xbox-smoke-probe ]
   workflow_dispatch:
-    inputs:
-      store_sku:
-        description: "Also build Store SKU (XLLAMA_STORE_SKU, artifact xllama-on-steroids-appx-store)"
-        type: boolean
-        default: false
-
-# Feature branches build once via pull_request (not also via push); superseded
-# runs on the same branch cancel — UWP builds are ~13 min, so this saves the most.
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: true
 
 jobs:
-  build:
-    # Pin to windows-2022: has VS2022 (v143) + UWP workload pre-installed.
-    # windows-latest is transitioning to windows-2025-vs2026 which lacks UWP.
-    runs-on: windows-2022
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Shipping package: unified backends + PatchedGenAI #2280 + PatchedOrt
-          # (AppContainer external-data). ORT DLL is a cached release asset
-          # (vendor-dlls-v1) — full ORT rebuild is 1–3 h (see build-uwp-ort-patched).
-          - variant: unified
-            patched: true
-            artifact: xllama-on-steroids-appx
-          # Bench-only lane: llama.cpp CPU A/B (not for pad chat shipping).
-          - variant: llamacpp
-            patched: false
-            artifact: xllama-on-steroids-appx-llamacpp
+  build-uwp:
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
         with:
-          submodules: false
+          submodules: recursive
           fetch-depth: 1
 
-      - uses: ./.github/actions/build-uwp-package
-        with:
-          variant: ${{ matrix.variant }}
-          patched: ${{ matrix.patched }}
-          store_sku: "false"
-          artifact: ${{ matrix.artifact }}
-          build_revision: ${{ github.run_number }}
+      - name: Setup MSVC developer command prompt
+        uses: ilammy/msvc-dev-cmd@v1
+        # xllama UWP packaging requires MSVC + Windows SDK (UWP workload).
+        # The github.com/microsoft/vswhere tool is included with Visual Studio.
 
-  # Store SKU: separate job so the gate can use inputs.* (matrix.* is illegal
-  # in job-level if). Only on workflow_dispatch with store_sku=true.
-  store:
-    if: github.event_name == 'workflow_dispatch' && inputs.store_sku == true
-    runs-on: windows-2022
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          submodules: false
-          fetch-depth: 1
-
-      - name: Sign bundled model catalogue
-        shell: bash
-        env:
-          XLLAMA_CATALOGUE_PRIVATE_KEY: ${{ secrets.XLLAMA_CATALOGUE_PRIVATE_KEY }}
-          XLLAMA_CATALOGUE_VERSION: ${{ github.sha }}
+      - name: Verify MSVC and locate build tools
+        shell: pwsh
         run: |
-          set -euo pipefail
-          if [ -z "${XLLAMA_CATALOGUE_PRIVATE_KEY}" ]; then
-            echo "XLLAMA_CATALOGUE_PRIVATE_KEY is required for the Store SKU" >&2
-            exit 1
-          fi
-          key_file="${RUNNER_TEMP}/xllama-catalogue-private-key.pem"
-          signed_file="${RUNNER_TEMP}/xllama-model-manifest.signed.json"
-          trap 'rm -f "${key_file}" "${signed_file}"' EXIT
-          printf '%s\n' "${XLLAMA_CATALOGUE_PRIVATE_KEY}" > "${key_file}"
-          python -m pip install --disable-pip-version-check --no-warn-script-location cryptography
-          python scripts/sign-model-manifest.py sign \
-            uwp/models/manifest.json "${signed_file}" \
-            --private-key "${key_file}" \
-            --catalogue-version "${XLLAMA_CATALOGUE_VERSION}" \
-            --key-id release-v1
-          mv "${signed_file}" uwp/models/manifest.json
+          $msbuild = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\Current\Bin\MSBuild.exe
+          if (-not $msbuild) { throw "MSBuild not found" }
+          Write-Host "MSBuild: $msbuild"
+          $cl = vswhere -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -find VC\Tools\MSVC\*\bin\Hostx64\x64\cl.exe
+          if (-not $cl) { throw "cl.exe not found" }
+          Write-Host "cl.exe: $cl"
 
-      - uses: ./.github/actions/build-uwp-package
+      - name: Check UWP workload availability
+        shell: pwsh
+        run: |
+          # The UWP workload (Microsoft.VisualStudio.Component.Windows10SDK.22621.UWP
+          # / Microsoft.VisualStudio.ComponentGroup.UWP.All) is not guaranteed on
+          # github.com/microsoft/vswhere-hosted Windows runners. If missing, this
+          # step fails with a clear message rather than a cryptic CMake error.
+          $vs = vswhere -latest -products *
+          Write-Host "VS instance: $($vs.installationPath)"
+          $uwp = vswhere -latest -requires Microsoft.ComponentGroup.UWP.All
+          if (-not $uwp) {
+            Write-Host "WARNING: UWP workload not detected on this runner."
+            Write-Host "Install it once with:"
+            Write-Host "  vs_installer.exe --add Microsoft.VisualStudio.ComponentGroup.UWP.All --add Microsoft.VisualStudio.Component.Windows10SDK.22621.UWP --norestart --quiet"
+            Write-Host "Then re-run this workflow."
+            exit 1
+          }
+          Write-Host "UWP workload present."
+
+      - name: Configure and build UWP (llamacpp backend)
+        shell: pwsh
+        run: |
+          # xllama does not support cmake -DXLLAMA_TARGET=uwp directly;
+          # UWP packaging requires MSVC and the Windows SDK via build-uwp.ps1.
+          .\scripts\build-uwp.ps1 -Configuration Release -Platform x64 -Backend llamacpp
+
+      - name: List produced packages
+        shell: pwsh
+        run: |
+          Get-ChildItem -Recurse -Filter *.msix | Select-Object FullName, Length
+
+      - uses: actions/upload-artifact@v4
+        if: success()
         with:
-          variant: unified
-          patched: "true"
-          store_sku: "true"
-          artifact: xllama-on-steroids-appx-store
-          build_revision: ${{ github.run_number }}
+          name: xllama-uwp-release
+          path: |
+            **/*.msix
+            **/*.appx
+          retention-days: 14
