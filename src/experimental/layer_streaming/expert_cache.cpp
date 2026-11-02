@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Gianluca Mazza
 // SPDX-License-Identifier: MIT
+//
+// Built on top of Xllama by Gianluca Mazza (https://github.com/gianlucamazza/xllama)
 #include "expert_cache.h"
 
 #include <algorithm>

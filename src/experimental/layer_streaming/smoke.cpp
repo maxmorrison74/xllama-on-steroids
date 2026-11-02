@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Gianluca Mazza
 // SPDX-License-Identifier: MIT
+//
+// Built on top of Xllama by Gianluca Mazza (https://github.com/gianlucamazza/xllama)
 // Synthetic fixtures produce noise, not a usable model. No downloaded weights.
 #include "layer_streaming.h"
 

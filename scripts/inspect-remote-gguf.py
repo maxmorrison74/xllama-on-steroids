@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # Copyright (c) 2024 Gianluca Mazza
 # SPDX-License-Identifier: MIT
+#
+# Built on top of Xllama by Gianluca Mazza (https://github.com/gianlucamazza/xllama)
 """Read a bounded GGUF header from a pinned Hugging Face artifact, not its weights.
 
 No third-party dependencies. Reports descriptor sizes, not runtime compatibility

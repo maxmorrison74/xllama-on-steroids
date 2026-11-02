@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # Copyright (c) 2024 Gianluca Mazza
 # SPDX-License-Identifier: MIT
+#
+# Built on top of Xllama by Gianluca Mazza (https://github.com/gianlucamazza/xllama)
 """Inspect a text-only Qwen3.8-27B GGUF; do not load weights or run inference.
 
 Host-only: uses gguf-py's read-only mapping to inspect tensor descriptors.

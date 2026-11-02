@@ -4,6 +4,14 @@ Agent guide for xllama. Human overview is [README.md](README.md). Facts have
 one home — [docs/README.md](docs/README.md) — so link those documents instead
 of copying tables, tok/s figures, or constraint numbers into a second place.
 
+## Original project
+
+**Xllama on Steroids** is a fork of **[Xllama](https://github.com/gianlucamazza/xllama)**
+by **[Gianluca Mazza](https://github.com/gianlucamazza)**. Special thanks to Gianluca
+for the original Xbox Series S|X Dev Mode port, the llama.cpp + ONNX Runtime
+dual-backend dispatch, and the AppContainer patches. See [CREDITS.md](CREDITS.md)
+for full attribution.
+
 ## Project overview
 
 xllama runs local chat, SD-Turbo diffusion, and on-device training on Xbox

@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Gianluca Mazza
 // SPDX-License-Identifier: MIT
+//
+// Built on top of Xllama by Gianluca Mazza (https://github.com/gianlucamazza/xllama)
 #include "layer_streaming.h"
 
 // Deliberate research-only dependency; do not expose this through the shared API.

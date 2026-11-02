@@ -7,6 +7,14 @@ snapshot), the perf SSOT [benchmarks.md](benchmarks.md), and the AppContainer
 constraints SSOT [uwp-constraints.md](uwp-constraints.md) — those own the numbers
 and the sandbox limits; this file owns the structure.
 
+## Original project
+
+**Xllama on Steroids** is a fork of **[Xllama](https://github.com/gianlucamazza/xllama)**
+by **[Gianluca Mazza](https://github.com/gianlucamazza)**. All original code remains
+under the MIT License with copyright © Gianluca Mazza and contributors. Changes in
+this fork are contributed under the same license. See [CREDITS.md](../CREDITS.md)
+for full attribution.
+
 ## Two pillars, two targets, one core
 
 xllama has two **platform pillars** that share C++ contracts but do not share

@@ -1,6 +1,7 @@
 # Xllama on Steroids
 
 > ## 🙏 Credits
+>
 > **Special thanks to [Gianluca Mazza](https://github.com/gianlucamazza), creator of the original [Xllama project](https://github.com/gianlucamazza/xllama).**
 > This fork builds on his original code and Xbox development work.
 
@@ -95,7 +96,6 @@ Special thanks to Gianluca for:
 All original code remains under the [MIT License](LICENSE) with copyright © Gianluca Mazza and contributors. Changes in this fork (MoE streaming probe, SSD assessment, host-native layer-streaming prototype, UWP smoke probe) are contributed under the same license. See [CREDITS.md](CREDITS.md) for full attribution.
 
 ---
-
 
 ## LAN Endpoint — OpenAI-compatible
 

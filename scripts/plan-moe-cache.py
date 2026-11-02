@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # Copyright (c) 2024 Gianluca Mazza
 # SPDX-License-Identifier: MIT
+#
+# Built on top of Xllama by Gianluca Mazza (https://github.com/gianlucamazza/xllama)
 """Cost an expert cache from a captured GGUF header; no runtime performance claims."""
 
 import argparse

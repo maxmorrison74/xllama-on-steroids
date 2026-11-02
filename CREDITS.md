@@ -17,12 +17,12 @@ All original copyright and licence notices are preserved. Changes introduced in 
 
 ## Third-party components
 
-| Component | Source | License |
-|-----------|--------|---------|
-| Xllama (original code) | https://github.com/gianlucamazza/xllama | MIT |
-| llama.cpp (ggml / GGUF inference) | https://github.com/ggml-org/llama.cpp | MIT |
-| ONNX Runtime (DirectML) | https://github.com/microsoft/onnxruntime | MIT |
-| ONNX Runtime GenAI (DirectML) | https://github.com/microsoft/onnxruntime-genai | MIT |
-| DirectML | https://github.com/microsoft/DirectML | Microsoft proprietary / NuGet |
+| Component                         | Source                                         | License                       |
+| --------------------------------- | ---------------------------------------------- | ----------------------------- |
+| Xllama (original code)            | https://github.com/gianlucamazza/xllama        | MIT                           |
+| llama.cpp (ggml / GGUF inference) | https://github.com/ggml-org/llama.cpp          | MIT                           |
+| ONNX Runtime (DirectML)           | https://github.com/microsoft/onnxruntime       | MIT                           |
+| ONNX Runtime GenAI (DirectML)     | https://github.com/microsoft/onnxruntime-genai | MIT                           |
+| DirectML                          | https://github.com/microsoft/DirectML          | Microsoft proprietary / NuGet |
 
 See `NOTICE` for full third-party attribution, and `LICENSE` for this fork's licence.
