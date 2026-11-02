@@ -81,7 +81,21 @@ Full catalogue + Phase 14 coding models: [model-matrix.md](docs/model-matrix.md)
 
 Hugging Face collection: [Xllama on Steroids: models measured on Xbox Series S](https://huggingface.co/collections/gianlucamazza/xllama-models-measured-on-xbox-series-s-6aca0b32275cbe99dbf02d89) — models measured in [docs/benchmarks.md](docs/benchmarks.md).
 
+## 🙏 Acknowledgments
+
+This fork builds on **[Xllama](https://github.com/gianlucamazza/xllama)** by **[Gianluca Mazza](https://github.com/gianlucamazza)**.
+
+Special thanks to Gianluca for:
+
+- The original Xbox Series S|X Dev Mode port (UWP / AppContainer)
+- The llama.cpp + ONNX Runtime GenAI dual-backend dispatch
+- The ONNX Runtime / DirectML AppContainer patches
+- The console benchmark infrastructure and measurement methodology
+
+All original code remains under the [MIT License](LICENSE) with copyright © Gianluca Mazza and contributors. Changes in this fork (MoE streaming probe, SSD assessment, host-native layer-streaming prototype, UWP smoke probe) are contributed under the same license. See [CREDITS.md](CREDITS.md) for full attribution.
+
 ---
+
 
 ## LAN Endpoint — OpenAI-compatible
 
