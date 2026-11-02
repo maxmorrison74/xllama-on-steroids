@@ -1,0 +1,32 @@
+{
+  "status": "scenario_only_no_uwp_moe_engine_or_measured_xbox_cache_hit_rate",
+  "source": {
+    "repo": "bartowski/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF",
+    "revision": "6c6e8692f43e4ca663f7ece8229a1361090d3a4c",
+    "filename": "Qwen_Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf",
+    "file_bytes": 18632183808,
+    "fetched_bytes": 16777216,
+    "full_file_sha256_verified": false
+  },
+  "header_sha256": "67420a2e70d2b6b61ffd6cb0e98577059cb2cf1d1e52c307c7f3c910ab0fa8aa",
+  "common_tensor_bytes": 1073051648,
+  "slots_per_layer": 16,
+  "expert_cache_bytes": 2194145280,
+  "runtime_reserve_bytes_assumed": 805306368,
+  "planning_cap_bytes": 4294967296,
+  "planned_bytes": 4072503296,
+  "budget_fits_arithmetically": true,
+  "expert_read_bytes_per_token_without_cache": 1097072640,
+  "assumed_byte_weighted_hit_rate": 0.5,
+  "scenario_missed_expert_bytes_per_token": 548536320.0,
+  "assumed_effective_read_gbs": 1.57,
+  "io_service_seconds_per_token_at_assumptions": 0.34938619108280256,
+  "limitations": [
+    "runtime reserve is an assumption, not measured model memory",
+    "RAM cap must not be confused with the headless allocation envelope",
+    "cache hit rate is hypothetical, not borrowed from another machine",
+    "probe rate may not transfer to packed expert reads",
+    "excludes compute, scheduling, cache planning, copies and prefill",
+    "not an end-to-end token rate or a correctness/admission verdict"
+  ]
+}

@@ -37,7 +37,7 @@ Header modules (`include/xllama/`), all WinRT-free so they are host-testable:
 | `session_spec.h`                   | `resolve_session_params`, `same_load` — one catalogue→session resolver for GUI, API and pull; the hub reuses only the same load (ADR 0007)     |
 | `session.h` / `inference_params.h` | `Session`/`SessionParams`, `InferenceParams/Result` (`echo_stdout`, the `resolve_max_length` #130 ladder), `Backend` enum                      |
 | `session_hub.h`                    | `SessionHub` — the ONE process-wide resident-Session owner (GUI + LAN API); locking + `generation` contract                                    |
-| `compute_admission.h`              | Process-wide RAII lease for resource-heavy jobs across UI and LAN API; acquire before `session_hub().mtx`                                       |
+| `compute_admission.h`              | Process-wide RAII lease for resource-heavy jobs across UI and LAN API; acquire before `session_hub().mtx`                                      |
 | `sampling.h`                       | `SamplingConfig`, shared defaults; CLI/bench and GUI/API init from it (#125)                                                                   |
 | `training.h` / `training_params.h` | `TrainingJob`/`TrainingResult`, stages, device gates, job JSON                                                                                 |
 | `device_train.h`                   | Lane B engine API: `run_device_train_job`, progress callbacks, filters                                                                         |
@@ -170,6 +170,70 @@ to the screen. Because the app streams, the latency that matters is
 **time-to-first-token**, not total turn time; `InferenceResult::t_p_eval_ms`
 carries it and `StartInference` surfaces it (`§5d`, #139). The LAN endpoint below
 is the one path that does **not** stream — it returns a completed response.
+
+### Experimental CPU layer-streaming runner (not a shipping backend)
+
+`XLLAMA_BUILD_STREAMING_SPIKE=ON` builds the standalone
+`xllama-streaming-spike` and `xllama-streaming-smoke` targets under
+`src/experimental/layer_streaming/`. The option defaults to **OFF** and nothing
+in that directory is linked into `xllama`, `SessionHub`, the GUI, LAN API or UWP
+package. It does not introduce a third shipping backend or alter model routing.
+
+The runner owns one metadata-only llama.cpp model, its context, resident
+non-block weights and two bounded CPU decoder-weight slots. It deliberately
+depends on the pinned private `llama-model.h`: after assigning external CPU
+weight storage it promotes the model out of allocation-simulation mode. A
+per-node scheduler callback synchronously reads the block needed by each
+weight operand, following weight views. It returns true for every node so the
+pinned scheduler executes and synchronizes one node before preparing another;
+look-ahead batching would overwrite still-needed weights and is forbidden.
+The slot addresses remain fixed for graph reuse. Recurrent/KV state and compute
+buffers belong to llama.cpp and are **not** included in the weight budget.
+
+Read errors and cancellation throw before the affected node is submitted on
+the C++ scheduler caller. A failed decode poisons the context and makes logits
+unavailable; there is no retry on partially updated state. Only the sticky
+`cancel()` operation is allowed concurrently with decode. This callback and
+private-model ownership contract is experimental, not an endorsed public
+llama.cpp extension API. Production/UWP integration needs explicit ownership,
+error and cancellation hooks rather than silently repurposing `no_alloc`.
+
+Algorithm limits, build/run commands and verification gates live in
+[ssd-inference-assessment.md §7](ssd-inference-assessment.md#7-host-only-cpu-layer-streaming-spike).
+
+The same option also builds `xllama-moe-streaming-spike` and its separate
+`moe-streaming-smoke` CTest under that directory. `MoeStreamingModel` is a
+host-only `qwen3moe` adapter: all common tensors stay resident and each decoder
+layer owns a persistent expert cache. `ExpertCache` implements ghost-history
+LFU with recency tie-breaking, protects the whole requested set before choosing
+victims, and refuses to release slots with unfinished reads. A miss becomes
+valid only after the engine has read every gate/up/down projection for it.
+Cache telemetry counts unique expert requests per router decision, not each
+projection's access to the same bytes.
+
+`MoeFile` is the small positioned-read abstraction used by the MoE adapter:
+Win32/UWP (`CreateFile2`/`ReadFile`, optional `FILE_FLAG_NO_BUFFERING`) and
+POSIX (`pread`, optional `O_DIRECT`), with a fallback to buffered reads and an
+explicit `unbuffered` flag so callers never mistake a buffered read for a
+direct one. It is the storage half of the UWP file strategy, not a substitute
+for the AppContainer constraints in [uwp-constraints.md](uwp-constraints.md).
+
+The MoE adapter reduces the physical expert tensor axis to the admitted slot
+count while leaving the router's original expert count, weights and probabilities
+unchanged. Before one CPU `MUL_MAT_ID` it temporarily translates selected expert
+IDs to cache slots; after that synchronized matmul it restores the original IDs.
+To make scheduler look-ahead safe, **every integer producer or consumer is a
+checkpoint**, as is every expert matmul. Thus queued gathers cannot observe
+remapped IDs and router data exists before it is inspected. Pure-float ranges
+can execute together; a conservative per-node mode is retained for comparison.
+Unexpected expert operands/views fail closed instead of reading a stale slot.
+
+This is still pinned-internals research, not the production loader/scheduler
+extension. It is CPU-only, single-owner and physical-ubatch=1; error/cancellation
+poisons the context, restores any temporary IDs and prevents logits access.
+It does not modify the submodule, instantiate a shipping `Session`, or add a
+console flag. Commands, verification and remaining UWP gates:
+[SSD assessment §10](ssd-inference-assessment.md#10-host-native-moe-cache-and-execution-prototype).
 
 ## Chat templates (`ChatFormat`)
 

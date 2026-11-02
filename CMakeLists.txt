@@ -11,6 +11,7 @@ option(XLLAMA_BUILD_TESTS    "Build unit tests" OFF)
 option(XLLAMA_ENABLE_ASAN    "Enable AddressSanitizer" OFF)
 option(XLLAMA_ENABLE_UBSAN   "Enable UndefinedBehaviourSanitizer" OFF)
 option(XLLAMA_BUILD_PROBES   "Build benchmarking probes (membw, diskbw, gpubw, gpugemv, gpustep, ramceil)" ON)
+option(XLLAMA_BUILD_STREAMING_SPIKE "Build the host-only experimental CPU layer-streaming runner" OFF)
 
 # ------------------------------------------------------------------
 # Target selection
@@ -54,6 +55,11 @@ set(LLAMA_BUILD_TOOLS     ON  CACHE BOOL "" FORCE)
 
 add_subdirectory(llama.cpp)
 
+if(XLLAMA_BUILD_STREAMING_SPIKE)
+    enable_testing()
+    add_subdirectory(src/experimental/layer_streaming)
+endif()
+
 # ------------------------------------------------------------------
 # xllama library (shared between CLI and UWP)
 # ------------------------------------------------------------------
@@ -69,6 +75,7 @@ add_library(xllama STATIC
     src/bridge/chat_prompt.cpp
     src/bridge/prompt_budget.cpp
     src/bridge/http_framing.cpp
+    src/bridge/moe_streaming.cpp
     src/bridge/tool_transcript.cpp
     src/bridge/tool_request.cpp
     src/bridge/tool_template.cpp

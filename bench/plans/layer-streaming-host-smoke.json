@@ -1,0 +1,161 @@
+{
+  "status": "synthetic_host_parity_only_not_xbox_or_checkpoint_validation",
+  "captured_utc": "2026-11-02T11:00:32.709216+00:00",
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "llama_cpp_revision": "d81235049384534c167caea52b85a694f6103d14",
+  "source_sha256": {
+    "src/experimental/layer_streaming/layer_streaming.cpp": "d11006208bf30ff01db39f36a6f12c4eb9ad3591f45bd6759c9fb9be68afa093",
+    "src/experimental/layer_streaming/layer_streaming.h": "2f5904e2a6e8108d08e8e4be9808e33c8ad956209d3f65afb3f393593c19792a",
+    "src/experimental/layer_streaming/smoke.cpp": "4b72d0f15625ae57e61a0e2f142c6bd1cac564db44633ef07f19f7b35c62c323"
+  },
+  "runs": [
+    {
+      "executable": "build/streaming-spike/src/experimental/layer_streaming/xllama-streaming-smoke",
+      "sanitizers": [],
+      "exit_code": 0,
+      "fixtures": [
+        {
+          "fixture": "llama-f32.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 608512,
+          "resident_plus_two_slots_bytes": 312576
+        },
+        {
+          "fixture": "llama-q4_0.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 87552,
+          "resident_plus_two_slots_bytes": 45056
+        },
+        {
+          "fixture": "llama-q4_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 1345536,
+          "resident_plus_two_slots_bytes": 677888
+        },
+        {
+          "fixture": "llama-q6_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 1958016,
+          "resident_plus_two_slots_bytes": 986240
+        },
+        {
+          "fixture": "qwen35-f32.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 686752,
+          "resident_plus_two_slots_bytes": 353920
+        },
+        {
+          "fixture": "qwen35-q4_0.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 104192,
+          "resident_plus_two_slots_bytes": 54912
+        },
+        {
+          "fixture": "qwen35-q4_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 1522400,
+          "resident_plus_two_slots_bytes": 771072
+        },
+        {
+          "fixture": "qwen35-q6_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 2204048,
+          "resident_plus_two_slots_bytes": 1114496
+        }
+      ]
+    },
+    {
+      "executable": "build/streaming-spike-asan/src/experimental/layer_streaming/xllama-streaming-smoke",
+      "sanitizers": ["address", "undefined"],
+      "exit_code": 0,
+      "fixtures": [
+        {
+          "fixture": "llama-f32.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 608512,
+          "resident_plus_two_slots_bytes": 312576
+        },
+        {
+          "fixture": "llama-q4_0.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 87552,
+          "resident_plus_two_slots_bytes": 45056
+        },
+        {
+          "fixture": "llama-q4_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 1345536,
+          "resident_plus_two_slots_bytes": 677888
+        },
+        {
+          "fixture": "llama-q6_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 1958016,
+          "resident_plus_two_slots_bytes": 986240
+        },
+        {
+          "fixture": "qwen35-f32.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 686752,
+          "resident_plus_two_slots_bytes": 353920
+        },
+        {
+          "fixture": "qwen35-q4_0.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 104192,
+          "resident_plus_two_slots_bytes": 54912
+        },
+        {
+          "fixture": "qwen35-q4_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 1522400,
+          "resident_plus_two_slots_bytes": 771072
+        },
+        {
+          "fixture": "qwen35-q6_K.gguf",
+          "max_abs_logit_error": 0.0,
+          "layer_loads": 16,
+          "logical_weight_bytes": 2204048,
+          "resident_plus_two_slots_bytes": 1114496
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "finite_logits",
+    "resident_streamed_logit_parity",
+    "prefill_and_incremental_decode",
+    "repeated_layer_eviction",
+    "reduced_weight_allocation",
+    "weight_budget_rejection",
+    "uninitialized_logits_rejected",
+    "cancel_before_decode",
+    "short_read_poisoning"
+  ],
+  "limitations": [
+    "synthetic_noise_weights_not_model_quality",
+    "host_CPU_not_UWP",
+    "no_full_27B_checkpoint",
+    "no_split_GGUF",
+    "weight_budget_excludes_runtime_state"
+  ],
+  "cli_argument_validation_passed": true
+}

@@ -424,6 +424,28 @@ GPU decode gap cannot be blamed on App-mode scheduling — it is a DML/kernel
 issue, consistent with the fused-int4 analysis above. Operational note:
 re-check the designation after any package reinstall (it can reset to App).
 
+### §5g — Series X headless resource probe (2026-11-02)
+
+The [captured run](../bench/results/20261102T103941Z-series-x-streaming/run.json)
+and [Device Portal identity](../bench/results/20261102T103941Z-series-x-streaming/device-os-info.json)
+verify **Xbox Series X**, package `1.6.1.12`. The package's build-toolchain
+provenance was not independently verified; this is resource-probe evidence,
+not a shipping inference-performance claim.
+
+The [raw heap walk](../bench/results/20261102T103941Z-series-x-streaming/ramceil-result.csv)
+committed and touched **4864 MiB**, reporting **4894 MiB** working set at the
+last successful step and **239 MiB** available physical memory. It completed
+with `avail_floor`, not allocation failure or a process kill. Consequently this
+is a tested headless allocation envelope, **not the hard app RAM ceiling or a
+safe production model budget**. The GPU query reported a **4147 MiB** budget;
+that is not an additional independent RAM pool to add to the heap figure.
+
+The installed probe hard-codes `xbox-series-s` in the CSV host column. Raw
+evidence is intentionally unchanged; the sidecar and portal identity establish
+that these rows were captured on Series X. Do not group them as Series S data
+based on that column. SSD measurements and the Qwen streaming implications
+belong to [ssd-inference-assessment.md](ssd-inference-assessment.md).
+
 ## 6. Limited Thread Count
 
 **Problem**: Dev Mode apps share CPU resources. Xbox Series S has 8 Zen 2 cores; typically 6–7 are available.

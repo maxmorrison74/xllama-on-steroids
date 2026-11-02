@@ -1,0 +1,288 @@
+{
+  "model": "Qwen/Qwen3.8-27B",
+  "status": "planning_only_no_uwp_streaming_engine",
+  "policy": "resident_non_block_tensors_double_buffered_decoder_layers",
+  "tensor_bytes": 18962876416,
+  "resident_tensor_bytes": 1758126080,
+  "streamed_bytes_per_decode_token": 17204750336,
+  "largest_layer_bytes": 273685376,
+  "double_buffer_bytes": 547370752,
+  "runtime_reserve_bytes": 1073741824,
+  "ram_budget_bytes": 5100273664,
+  "planned_bytes": 3379238656,
+  "budget_fits_arithmetically": true,
+  "assumed_read_gbs": 1.87,
+  "io_only_decode_tok_s_upper_bound": 0.1086909117237887,
+  "layers": [
+    {
+      "index": 0,
+      "bytes": 273685376
+    },
+    {
+      "index": 1,
+      "bytes": 273685376
+    },
+    {
+      "index": 2,
+      "bytes": 273685376
+    },
+    {
+      "index": 3,
+      "bytes": 254240768
+    },
+    {
+      "index": 4,
+      "bytes": 273685376
+    },
+    {
+      "index": 5,
+      "bytes": 273685376
+    },
+    {
+      "index": 6,
+      "bytes": 273685376
+    },
+    {
+      "index": 7,
+      "bytes": 254240768
+    },
+    {
+      "index": 8,
+      "bytes": 273685376
+    },
+    {
+      "index": 9,
+      "bytes": 273685376
+    },
+    {
+      "index": 10,
+      "bytes": 273685376
+    },
+    {
+      "index": 11,
+      "bytes": 254240768
+    },
+    {
+      "index": 12,
+      "bytes": 273685376
+    },
+    {
+      "index": 13,
+      "bytes": 273685376
+    },
+    {
+      "index": 14,
+      "bytes": 273685376
+    },
+    {
+      "index": 15,
+      "bytes": 254240768
+    },
+    {
+      "index": 16,
+      "bytes": 273685376
+    },
+    {
+      "index": 17,
+      "bytes": 273685376
+    },
+    {
+      "index": 18,
+      "bytes": 273685376
+    },
+    {
+      "index": 19,
+      "bytes": 254240768
+    },
+    {
+      "index": 20,
+      "bytes": 273685376
+    },
+    {
+      "index": 21,
+      "bytes": 273685376
+    },
+    {
+      "index": 22,
+      "bytes": 273685376
+    },
+    {
+      "index": 23,
+      "bytes": 254240768
+    },
+    {
+      "index": 24,
+      "bytes": 273685376
+    },
+    {
+      "index": 25,
+      "bytes": 273685376
+    },
+    {
+      "index": 26,
+      "bytes": 273685376
+    },
+    {
+      "index": 27,
+      "bytes": 254240768
+    },
+    {
+      "index": 28,
+      "bytes": 273685376
+    },
+    {
+      "index": 29,
+      "bytes": 273685376
+    },
+    {
+      "index": 30,
+      "bytes": 273685376
+    },
+    {
+      "index": 31,
+      "bytes": 254240768
+    },
+    {
+      "index": 32,
+      "bytes": 273685376
+    },
+    {
+      "index": 33,
+      "bytes": 273685376
+    },
+    {
+      "index": 34,
+      "bytes": 273685376
+    },
+    {
+      "index": 35,
+      "bytes": 254240768
+    },
+    {
+      "index": 36,
+      "bytes": 273685376
+    },
+    {
+      "index": 37,
+      "bytes": 273685376
+    },
+    {
+      "index": 38,
+      "bytes": 273685376
+    },
+    {
+      "index": 39,
+      "bytes": 254240768
+    },
+    {
+      "index": 40,
+      "bytes": 273685376
+    },
+    {
+      "index": 41,
+      "bytes": 273685376
+    },
+    {
+      "index": 42,
+      "bytes": 273685376
+    },
+    {
+      "index": 43,
+      "bytes": 254240768
+    },
+    {
+      "index": 44,
+      "bytes": 273685376
+    },
+    {
+      "index": 45,
+      "bytes": 273685376
+    },
+    {
+      "index": 46,
+      "bytes": 273685376
+    },
+    {
+      "index": 47,
+      "bytes": 254240768
+    },
+    {
+      "index": 48,
+      "bytes": 273685376
+    },
+    {
+      "index": 49,
+      "bytes": 273685376
+    },
+    {
+      "index": 50,
+      "bytes": 273685376
+    },
+    {
+      "index": 51,
+      "bytes": 254240768
+    },
+    {
+      "index": 52,
+      "bytes": 273685376
+    },
+    {
+      "index": 53,
+      "bytes": 273685376
+    },
+    {
+      "index": 54,
+      "bytes": 273685376
+    },
+    {
+      "index": 55,
+      "bytes": 254240768
+    },
+    {
+      "index": 56,
+      "bytes": 273685376
+    },
+    {
+      "index": 57,
+      "bytes": 273685376
+    },
+    {
+      "index": 58,
+      "bytes": 273685376
+    },
+    {
+      "index": 59,
+      "bytes": 254240768
+    },
+    {
+      "index": 60,
+      "bytes": 273685376
+    },
+    {
+      "index": 61,
+      "bytes": 273685376
+    },
+    {
+      "index": 62,
+      "bytes": 273685376
+    },
+    {
+      "index": 63,
+      "bytes": 254240768
+    }
+  ],
+  "source": {
+    "repo": "ggml-org/Qwen3.8-27B-GGUF",
+    "revision": "a316ea527fde32c12487be7574e2db5ac2ad2a7e",
+    "filename": "Qwen3.8-27B-Q4_K_M.gguf",
+    "file_bytes": 18973870528,
+    "fetched_bytes": 16777216,
+    "full_file_sha256_verified": false
+  },
+  "header_sha256": "aa35b1a4418dbdad0d6ea93d238291ec56e55d379ab524b60a292f0386f8402f",
+  "console_probe_evidence": "bench/results/20261102T103941Z-series-x-streaming/run.json",
+  "ram_budget_basis": "Planning envelope set to successful 4864 MiB heap allocation in a headless probe, NOT a proven hard app limit or safe production budget.",
+  "runtime_reserve_basis": "1024 MiB is an unvalidated planning assumption for KV/recurrent state, scratch, UI and other allocations, NOT a measurement.",
+  "read_rate_basis": "1.87 GB/s: sequential 8 MiB, 1 thread, unbuffered, first pass; NOT actual model streaming throughput.",
+  "io_only_seconds_per_token_at_assumed_rate": 9.200401249197862
+}

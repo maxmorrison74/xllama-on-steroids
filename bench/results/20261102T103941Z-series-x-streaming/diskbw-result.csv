@@ -1,0 +1,5 @@
+file_mb,block_kb,pattern,threads,unbuffered,read_gbs_first,read_gbs_best,host,date
+4096,8192,seq,1,1,1.87,2.15,xbox-series-s,2026-11-02T10:40:27Z
+4096,8192,seq,4,1,1.74,1.74,xbox-series-s,2026-11-02T10:40:27Z
+4096,2048,rnd,1,1,1.44,1.60,xbox-series-s,2026-11-02T10:40:27Z
+4096,2048,rnd,4,1,1.57,1.58,xbox-series-s,2026-11-02T10:40:27Z

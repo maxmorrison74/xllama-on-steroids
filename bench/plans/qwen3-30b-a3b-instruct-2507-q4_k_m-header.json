@@ -1,0 +1,1432 @@
+{
+  "metadata": {
+    "general.architecture": "qwen3moe",
+    "general.name": "Qwen3 30B A3B Instruct 2507",
+    "qwen3moe.block_count": 48,
+    "qwen3moe.embedding_length": 2048,
+    "qwen3moe.expert_used_count": 8,
+    "qwen3moe.expert_count": 128
+  },
+  "header_bytes": 5969920,
+  "header_sha256": "67420a2e70d2b6b61ffd6cb0e98577059cb2cf1d1e52c307c7f3c910ab0fa8aa",
+  "tensor_count": 579,
+  "tensor_bytes": 18626213888,
+  "non_block_tensor_bytes": 430290944,
+  "largest_block_bytes": 405169152,
+  "block_bytes_per_decode_token": 18195922944,
+  "layers": [
+    {
+      "index": 0,
+      "bytes": 405169152
+    },
+    {
+      "index": 1,
+      "bytes": 405169152
+    },
+    {
+      "index": 2,
+      "bytes": 405169152
+    },
+    {
+      "index": 3,
+      "bytes": 405169152
+    },
+    {
+      "index": 4,
+      "bytes": 405169152
+    },
+    {
+      "index": 5,
+      "bytes": 405169152
+    },
+    {
+      "index": 6,
+      "bytes": 352994304
+    },
+    {
+      "index": 7,
+      "bytes": 352994304
+    },
+    {
+      "index": 8,
+      "bytes": 405169152
+    },
+    {
+      "index": 9,
+      "bytes": 352994304
+    },
+    {
+      "index": 10,
+      "bytes": 352994304
+    },
+    {
+      "index": 11,
+      "bytes": 405169152
+    },
+    {
+      "index": 12,
+      "bytes": 352994304
+    },
+    {
+      "index": 13,
+      "bytes": 352994304
+    },
+    {
+      "index": 14,
+      "bytes": 405169152
+    },
+    {
+      "index": 15,
+      "bytes": 352994304
+    },
+    {
+      "index": 16,
+      "bytes": 352994304
+    },
+    {
+      "index": 17,
+      "bytes": 405169152
+    },
+    {
+      "index": 18,
+      "bytes": 352994304
+    },
+    {
+      "index": 19,
+      "bytes": 352994304
+    },
+    {
+      "index": 20,
+      "bytes": 405169152
+    },
+    {
+      "index": 21,
+      "bytes": 352994304
+    },
+    {
+      "index": 22,
+      "bytes": 352994304
+    },
+    {
+      "index": 23,
+      "bytes": 405169152
+    },
+    {
+      "index": 24,
+      "bytes": 352994304
+    },
+    {
+      "index": 25,
+      "bytes": 352994304
+    },
+    {
+      "index": 26,
+      "bytes": 405169152
+    },
+    {
+      "index": 27,
+      "bytes": 352994304
+    },
+    {
+      "index": 28,
+      "bytes": 352994304
+    },
+    {
+      "index": 29,
+      "bytes": 405169152
+    },
+    {
+      "index": 30,
+      "bytes": 352994304
+    },
+    {
+      "index": 31,
+      "bytes": 352994304
+    },
+    {
+      "index": 32,
+      "bytes": 405169152
+    },
+    {
+      "index": 33,
+      "bytes": 352994304
+    },
+    {
+      "index": 34,
+      "bytes": 352994304
+    },
+    {
+      "index": 35,
+      "bytes": 405169152
+    },
+    {
+      "index": 36,
+      "bytes": 352994304
+    },
+    {
+      "index": 37,
+      "bytes": 352994304
+    },
+    {
+      "index": 38,
+      "bytes": 405169152
+    },
+    {
+      "index": 39,
+      "bytes": 352994304
+    },
+    {
+      "index": 40,
+      "bytes": 352994304
+    },
+    {
+      "index": 41,
+      "bytes": 405169152
+    },
+    {
+      "index": 42,
+      "bytes": 405169152
+    },
+    {
+      "index": 43,
+      "bytes": 405169152
+    },
+    {
+      "index": 44,
+      "bytes": 405169152
+    },
+    {
+      "index": 45,
+      "bytes": 405169152
+    },
+    {
+      "index": 46,
+      "bytes": 405169152
+    },
+    {
+      "index": 47,
+      "bytes": 405169152
+    }
+  ],
+  "routed_experts": {
+    "status": "layout_arithmetic_only_not_runtime_or_cache_measurement",
+    "experts_per_layer": 128,
+    "active_experts_per_token_per_layer": 8,
+    "common_tensor_bytes": 1073051648,
+    "all_routed_expert_tensor_bytes": 17553162240,
+    "proposed_bytes_per_slot_across_all_layers": 137134080,
+    "proposed_no_cache_expert_read_bytes_per_decode_token": 1097072640,
+    "packing_assumption": "one expert blob with each projection padded to 4096 bytes; original quantized bytes unchanged",
+    "layers": [
+      {
+        "index": 0,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 448730112
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 613880832
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 728183808
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 853899264
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 1019049984
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 1133352960
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 1259068416
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 1424219136
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 1538522112
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 1664237568
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 1829388288
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 1943691264
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 2069406720
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 2234557440
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 2348860416
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 2474575872
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 2639726592
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 2754029568
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 2879474688
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 2992720896
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3107023872
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3232468992
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3345715200
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3460018176
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 3585733632
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3750884352
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3865187328
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 3990632448
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4103878656
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4218181632
+          }
+        ]
+      },
+      {
+        "index": 10,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4343626752
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4456872960
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4571175936
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 4696891392
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4862042112
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 4976345088
+          }
+        ]
+      },
+      {
+        "index": 12,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5101790208
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5215036416
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5329339392
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5454784512
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5568030720
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5682333696
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 5808049152
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 5973199872
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6087502848
+          }
+        ]
+      },
+      {
+        "index": 15,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6212947968
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6326194176
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6440497152
+          }
+        ]
+      },
+      {
+        "index": 16,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6565942272
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6679188480
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 6793491456
+          }
+        ]
+      },
+      {
+        "index": 17,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 6919206912
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7084357632
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7198660608
+          }
+        ]
+      },
+      {
+        "index": 18,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7324105728
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7437351936
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7551654912
+          }
+        ]
+      },
+      {
+        "index": 19,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7677100032
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7790346240
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 7904649216
+          }
+        ]
+      },
+      {
+        "index": 20,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 8030364672
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8195515392
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8309818368
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8435263488
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8548509696
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8662812672
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8788257792
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 8901504000
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9015806976
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 9141522432
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9306673152
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9420976128
+          }
+        ]
+      },
+      {
+        "index": 24,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9546421248
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9659667456
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9773970432
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 9899415552
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10012661760
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10126964736
+          }
+        ]
+      },
+      {
+        "index": 26,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 10252680192
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10417830912
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10532133888
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10657579008
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10770825216
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 10885128192
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11010573312
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11123819520
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11238122496
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 11363837952
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11528988672
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11643291648
+          }
+        ]
+      },
+      {
+        "index": 30,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11768736768
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11881982976
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 11996285952
+          }
+        ]
+      },
+      {
+        "index": 31,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12121731072
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12234977280
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12349280256
+          }
+        ]
+      },
+      {
+        "index": 32,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 12474995712
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12640146432
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12754449408
+          }
+        ]
+      },
+      {
+        "index": 33,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12879894528
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 12993140736
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13107443712
+          }
+        ]
+      },
+      {
+        "index": 34,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13232888832
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13346135040
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13460438016
+          }
+        ]
+      },
+      {
+        "index": 35,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 13586153472
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13751304192
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13865607168
+          }
+        ]
+      },
+      {
+        "index": 36,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 13991052288
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14104298496
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14218601472
+          }
+        ]
+      },
+      {
+        "index": 37,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14344046592
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14457292800
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14571595776
+          }
+        ]
+      },
+      {
+        "index": 38,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 14697311232
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14862461952
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 14976764928
+          }
+        ]
+      },
+      {
+        "index": 39,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15102210048
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15215456256
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15329759232
+          }
+        ]
+      },
+      {
+        "index": 40,
+        "expert_payload_bytes": 2654208,
+        "proposed_expert_stride_bytes": 2654208,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15455204352
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15568450560
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15682753536
+          }
+        ]
+      },
+      {
+        "index": 41,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 15808468992
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 15973619712
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 16087922688
+          }
+        ]
+      },
+      {
+        "index": 42,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 16213638144
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 16378788864
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 16493091840
+          }
+        ]
+      },
+      {
+        "index": 43,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 16618807296
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 16783958016
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 16898260992
+          }
+        ]
+      },
+      {
+        "index": 44,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 17023976448
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 17189127168
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 17303430144
+          }
+        ]
+      },
+      {
+        "index": 45,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 17429145600
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 17594296320
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 17708599296
+          }
+        ]
+      },
+      {
+        "index": 46,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 17834314752
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 17999465472
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 18113768448
+          }
+        ]
+      },
+      {
+        "index": 47,
+        "expert_payload_bytes": 3059712,
+        "proposed_expert_stride_bytes": 3059712,
+        "projections": [
+          {
+            "projection": "down",
+            "bytes_per_expert": 1290240,
+            "ggml_type": 14,
+            "source_tensor_file_offset": 18239483904
+          },
+          {
+            "projection": "gate",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 18404634624
+          },
+          {
+            "projection": "up",
+            "bytes_per_expert": 884736,
+            "ggml_type": 12,
+            "source_tensor_file_offset": 18518937600
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "repo": "bartowski/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF",
+    "revision": "6c6e8692f43e4ca663f7ece8229a1361090d3a4c",
+    "filename": "Qwen_Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf",
+    "file_bytes": 18632183808,
+    "fetched_bytes": 16777216,
+    "full_file_sha256_verified": false
+  },
+  "status": "metadata_only_not_inference_validation"
+}

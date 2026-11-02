@@ -1,0 +1,69 @@
+{
+  "platform": "Xbox Series X",
+  "package": "GianlucaMazza.xllama_1.6.1.12_x64__pj67f1fcj4n14",
+  "started_utc": "20261102T103941Z",
+  "raw_csv_host_label_caveat": "Installed probe code hard-codes xbox-series-s; /api/os/info verifies this run is Xbox Series X. Raw CSVs are preserved unchanged.",
+  "probes": {
+    "ramceil": {
+      "completed": true,
+      "csv_fetched": true,
+      "rows": 38,
+      "stop_reason": "avail_floor",
+      "max_committed_mib": 4864,
+      "last_available_mib": 239
+    },
+    "diskbw": {
+      "completed": true,
+      "csv_fetched": true,
+      "rows": 4,
+      "measurements": [
+        {
+          "file_mb": "4096",
+          "block_kb": "8192",
+          "pattern": "seq",
+          "threads": "1",
+          "unbuffered": "1",
+          "read_gbs_first": "1.87",
+          "read_gbs_best": "2.15",
+          "host": "xbox-series-s",
+          "date": "2026-11-02T10:40:27Z"
+        },
+        {
+          "file_mb": "4096",
+          "block_kb": "8192",
+          "pattern": "seq",
+          "threads": "4",
+          "unbuffered": "1",
+          "read_gbs_first": "1.74",
+          "read_gbs_best": "1.74",
+          "host": "xbox-series-s",
+          "date": "2026-11-02T10:40:27Z"
+        },
+        {
+          "file_mb": "4096",
+          "block_kb": "2048",
+          "pattern": "rnd",
+          "threads": "1",
+          "unbuffered": "1",
+          "read_gbs_first": "1.44",
+          "read_gbs_best": "1.60",
+          "host": "xbox-series-s",
+          "date": "2026-11-02T10:40:27Z"
+        },
+        {
+          "file_mb": "4096",
+          "block_kb": "2048",
+          "pattern": "rnd",
+          "threads": "4",
+          "unbuffered": "1",
+          "read_gbs_first": "1.57",
+          "read_gbs_best": "1.58",
+          "host": "xbox-series-s",
+          "date": "2026-11-02T10:40:27Z"
+        }
+      ]
+    }
+  },
+  "console_restored": true,
+  "finished_utc": "2026-11-02T10:40:32.698877+00:00"
+}

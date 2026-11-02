@@ -79,6 +79,14 @@ Other presets: `linux-debug` (no tests), `linux-asan` (Debug + ASan + tests).
 turn it on. `XLLAMA_NATIVE_OPT=ON` tunes ggml for the build machine;
 default is portable AVX2.
 
+Opt-in host research: `XLLAMA_BUILD_STREAMING_SPIKE=ON` builds the isolated
+`src/experimental/layer_streaming/` dense/MoE runners and registers
+`streaming-smoke` and `moe-streaming-smoke` in
+CTest. Linux CI opts in; shipping/default builds do not. Commands and limits:
+[docs/ssd-inference-assessment.md §7](docs/ssd-inference-assessment.md#7-host-only-cpu-layer-streaming-spike).
+It depends on pinned llama.cpp internals and is not a UWP/Session backend.
+MoE bring-up details: [SSD assessment §10](docs/ssd-inference-assessment.md#10-host-native-moe-cache-and-execution-prototype).
+
 Where to put a change:
 
 - Behaviour both the CLI and the UWP app need: a WinRT-free header in
@@ -127,8 +135,10 @@ python3 scripts/generate-benchmark-summary.py --check
 python3 scripts/build-research-package.py --check
 python3 scripts/check-release-metadata.py
 python3 -m unittest tests/test_research_package.py tests/test_xab_contract.py \
-  tests/test_release_metadata.py tests/test_release_bundle.py \
-  tests/test_make_shape_gguf.py tests/test_bench_run_status.py
+   tests/test_release_metadata.py tests/test_release_bundle.py \
+  tests/test_make_shape_gguf.py tests/test_bench_run_status.py \
+  tests/test_layer_streaming_plan.py tests/test_remote_gguf_metadata.py \
+  tests/test_moe_cache_plan.py
 ```
 
 After the CLI exists, CI validates every `training/jobs/*.json`:
@@ -217,24 +227,24 @@ cmake/              CMake helpers
 
 Load-bearing headers agents usually touch:
 
-| Header                               | Role                                                 |
-| ------------------------------------ | ---------------------------------------------------- |
-| `session.h` / `session_hub.h`        | `Session` API; the one process-wide resident session |
+| Header                               | Role                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| `session.h` / `session_hub.h`        | `Session` API; the one process-wide resident session         |
 | `compute_admission.h`                | Process-wide RAII permit for resource-heavy GUI and API jobs |
-| `inference_params.h` / `inference.h` | Params, result, `run_inference`                      |
-| `inference_progress.h`               | Prefill/decode progress logs and stall watchdog      |
-| `routing_policy.h`                   | ORT CPU-vs-DML routing and prompt budget             |
-| `prompt_budget.h`                    | `fit_prompt` and `fit_tool_transcript`               |
-| `sampling.h`                         | Sampler defaults shared by CLI, bench, GUI, API      |
-| `chat_prompt.h`                      | `ChatFormat` and stop sequences                      |
-| `embedding.h`                        | Embedding params and pooling trim                    |
-| `api_pull_policy.h`                  | Trusted catalogue pulls and API pull admission       |
-| `model_write.h`                      | Shared writer ownership before model mutation        |
-| `api_policy.h`                       | Classifies a tool proposal; does not execute tools   |
-| `training.h` / `device_train.h`      | Job validation and Lane B device train               |
-| `personalize.h`                      | In-app personalize helpers                           |
-| `json_utils.h`                       | JSON escape / parse (header-only)                    |
-| `catalog_trust.h`                    | UWP-only catalogue signature types                   |
+| `inference_params.h` / `inference.h` | Params, result, `run_inference`                              |
+| `inference_progress.h`               | Prefill/decode progress logs and stall watchdog              |
+| `routing_policy.h`                   | ORT CPU-vs-DML routing and prompt budget                     |
+| `prompt_budget.h`                    | `fit_prompt` and `fit_tool_transcript`                       |
+| `sampling.h`                         | Sampler defaults shared by CLI, bench, GUI, API              |
+| `chat_prompt.h`                      | `ChatFormat` and stop sequences                              |
+| `embedding.h`                        | Embedding params and pooling trim                            |
+| `api_pull_policy.h`                  | Trusted catalogue pulls and API pull admission               |
+| `model_write.h`                      | Shared writer ownership before model mutation                |
+| `api_policy.h`                       | Classifies a tool proposal; does not execute tools           |
+| `training.h` / `device_train.h`      | Job validation and Lane B device train                       |
+| `personalize.h`                      | In-app personalize helpers                                   |
+| `json_utils.h`                       | JSON escape / parse (header-only)                            |
+| `catalog_trust.h`                    | UWP-only catalogue signature types                           |
 
 Sampler chains are not headers under `include/`: `src/bridge/sampler_chain.h`
 (llama.cpp) and `src/bridge/ort_sampling.h` (ORT). Decode loops are

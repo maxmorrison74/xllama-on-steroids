@@ -10,6 +10,7 @@
 #include "MainPage.h"
 #include "inference-bridge.h"
 #include "xllama/compute_admission.h"
+#include "xllama/moe_streaming.h"
 #include "xllama/platform.h"
 #include "xllama/capture_probe.h"
 #include "native_capture.h"
@@ -20,6 +21,7 @@
 #endif
 // clang-format on
 
+    #include <cstdio>
     #include <thread>
     #include <utility>
 
@@ -260,8 +262,9 @@ void App::OnLaunched(LaunchActivatedEventArgs const&) {
                     (void)permit;
                     winrt::init_apartment(); // MTA: run_diffuse uses ApplicationData
                     ::xllama::bridge::run_diffuse();
-                    ::xllama::log_output("[xllama] diffuse-inproc: run returned (result/error above; "
-                                         "XAML window still up)\n");
+                    ::xllama::log_output(
+                        "[xllama] diffuse-inproc: run returned (result/error above; "
+                        "XAML window still up)\n");
                 }).detach();
             }
         }
@@ -489,6 +492,28 @@ int __stdcall wWinMain(HINSTANCE, HINSTANCE, PWSTR, int) {
             winrt::Windows::ApplicationModel::Core::CoreApplication::Run(
                 winrt::make<HeadlessView>(&::xllama::bridge::run_ramceil, "ramceil"));
             return 0; // not reached: CoreApplication::Exit terminates the process
+        }
+        std::wstring moestream_flag = flag_path_if_present(L"moestream.flag");
+        if (!moestream_flag.empty()) {
+            _wremove(moestream_flag.c_str());
+            ::xllama::log_output("[xllama] moestream.flag detected -> headless MoE smoke mode\n");
+            // Flag file's first line is the model filename relative to
+            // LocalState\models\ (e.g. "lfm25-350m" or "qwen3-0.5b-q4_k_m.gguf").
+            char model_buf[256] = "lfm25-350m";
+            FILE* fp = _wfopen(moestream_flag.c_str(), L"r, ccs=UTF-8");
+            if (fp) {
+                if (std::fgets(model_buf, sizeof(model_buf), fp)) {
+                    size_t len = std::strlen(model_buf);
+                    while (len > 0 && (model_buf[len - 1] == '\n' || model_buf[len - 1] == '\r' ||
+                                       model_buf[len - 1] == ' '))
+                        model_buf[--len] = '\0';
+                }
+                std::fclose(fp);
+            }
+            ::xllama::MoeStreamingParams params;
+            params.model_name = model_buf;
+            ::xllama::run_moe_streaming(params);
+            return 0; // Headless smoke run: exit after the single inference.
         }
         std::wstring mic_flag = flag_path_if_present(L"mic.flag");
         if (!mic_flag.empty()) {
